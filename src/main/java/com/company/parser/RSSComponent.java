@@ -1,24 +1,27 @@
 package com.company.parser;
 
+import com.company.AbstractRSS.AbstractRSSComponent;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
 //Базовый класс. Содержит урл страницы, формат даты для парса. Лист содержащий обекты RSSElement содержащих информацию из <Item>
 
-public class RSSComponent {
+public class RSSComponent extends AbstractRSSComponent {
 
     String uRL;
     String dataFormat;
 
-    List<RSSElement> rssElements;
-
-    public List<RSSElement> getRssElements() {
-        return rssElements;
-    }
-
-    public void setRssElements(List<RSSElement> rssElements) {
-        this.rssElements = rssElements;
-    }
+//    List<RSSElement> rssElements;
+//
+//    public List<RSSElement> getRssElements() {
+//        return rssElements;
+//    }
+//
+//    public void setRssElements(List<RSSElement> rssElements) {
+//        this.rssElements = rssElements;
+//    }
 
     public RSSComponent(String uRL, String dataFormat) {
         this.uRL = uRL;
