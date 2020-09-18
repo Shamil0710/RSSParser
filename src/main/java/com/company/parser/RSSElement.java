@@ -22,25 +22,17 @@ public class RSSElement implements Comparable<RSSElement>{
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
     public LocalDateTime getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(LocalDateTime publicationDate) {
-        this.publicationDate = publicationDate;
-    }
+
 
 
 
@@ -48,13 +40,17 @@ public class RSSElement implements Comparable<RSSElement>{
     @Override
     public int compareTo(RSSElement o) {
 
-        int result = publicationDate.compareTo(o.getPublicationDate());
 
-        if (result<0) return 1;
-        if (result>0) return -1;
+        if (!o.getPublicationDate().equals(null)){
+            int result = publicationDate.compareTo(o.getPublicationDate());
+
+            //При отсутсвии данного преобразования сортировка просходит по возрастнания (От более старого к более новому), что противоречит задаче
+            if (result<0) return 1;
+            if (result>0) return -1;
+
+        }
 
       return  0;
-
 
     }
 
