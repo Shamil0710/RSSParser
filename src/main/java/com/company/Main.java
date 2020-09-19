@@ -26,8 +26,9 @@ public class Main {
 
         rssCollector.collectRSSElements(yandexInternetRssComponent);
 
+        rssCollector.toSortFoTitle();
 
-        rssCollector.toPrintAndSort(50, true, "H:\\Parsing result.html");
+        rssCollector.toPrint(50,"H:\\Parsing result.html");
 
     }
 }

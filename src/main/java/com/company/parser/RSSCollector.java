@@ -10,8 +10,10 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class RSSCollector {
 
@@ -63,39 +65,32 @@ public class RSSCollector {
     /**
      *
      * @param numberOfLines Количество новостей для вывода
-     * @param sorting Необходима ли сортировка
      * @param saveDirectory Директория для сохронения результата
      * @throws IOException
      */
 
-    public void toPrintAndSort (int numberOfLines, boolean sorting, String saveDirectory) throws IOException {
+    public void toPrint (int numberOfLines, String saveDirectory) throws IOException {
 
-   FileWriter f = new FileWriter(saveDirectory, false);
-
+        FileWriter f = new FileWriter(saveDirectory, false);
 
 
         BufferedWriter bw = new BufferedWriter(f);
 
         int count = 0;
 
-        if (sorting) {
-
-            rssElements.sort(RSSElement::compareTo);
-        }
 
         try {
 
 
-
             for (RSSElement  element: rssElements) {
 
-
-                bw.write(element.getTitle() + "<br>");
+                count++;
+                bw.write(count + " " + element.getTitle() + "<br>");
                 bw.write("<a href=\"" + element.getUrl() + "\">" + element.getUrl() + "</a>" + "<br>");
                 bw.write(element.getPublicationDate().toString() + "<br>");
                 bw.write("<p>");
 
-                count++;
+
                 if (count == numberOfLines) break;
 
 
@@ -109,7 +104,22 @@ public class RSSCollector {
         }
 
     }
+
+    public void toSortFoTitle () {
+
+        //Сортировка с применением стрима
+
+        rssElements.stream().sorted(Comparator.comparing(RSSElement::getTitle)).collect(Collectors.toList());
+
+
+//        rssElements.sort(RSSElement::compareTo);
     }
+
+//    public void filter () {
+//        rssElements.stream().filter(rssElements.)
+//    }
+
+}
 
 
 
