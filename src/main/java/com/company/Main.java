@@ -26,7 +26,7 @@ public class Main {
 
         rssCollector.collectRSSElements(yandexInternetRssComponent);
 
-        rssCollector.toSortFoTitle();
+        rssCollector.sortByTitle();
 
         rssCollector.toPrint(50,"H:\\Parsing result.html");
 

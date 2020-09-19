@@ -23,7 +23,7 @@ public class RSSCollector {
         return rssElements;
     }
 
-    private final List<RSSElement> rssElements = new ArrayList<RSSElement>();
+    private List<RSSElement> rssElements = new ArrayList<RSSElement>();
 
 
     private List<Element> connectAndGetItems(RSSComponent rssComponent) throws IOException {
@@ -105,11 +105,14 @@ public class RSSCollector {
 
     }
 
-    public void toSortFoTitle () {
+    public void sortByTitle () {
 
         //Сортировка с применением стрима
+        //todo Допустимо ли такое?
 
-        rssElements.stream().sorted(Comparator.comparing(RSSElement::getTitle)).collect(Collectors.toList());
+      rssElements = rssElements.stream()
+              .sorted(Comparator.comparing(RSSElement::getTitle))
+              .collect(Collectors.toList());
 
 
 //        rssElements.sort(RSSElement::compareTo);
