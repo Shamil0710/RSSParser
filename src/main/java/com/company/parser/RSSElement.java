@@ -2,8 +2,9 @@ package com.company.parser;
 
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 
-public class RSSElement implements Comparable<RSSElement>{
+public class RSSElement {
 
     private String title;
     private String url;
@@ -43,20 +44,21 @@ public class RSSElement implements Comparable<RSSElement>{
     }
 
 
+// В связи с реализации сортировки стримами необходимость в данном комараторе отпадает
 
+//    @Override
+//    public int compareTo(RSSElement o) {
+//
+//        int result = publicationDate.compareTo(o.getPublicationDate());
+//
+//        if (result<0) return 1;
+//        if (result>0) return -1;
+//
+//      return  0;
+//
+//
+//    }
 
-    @Override
-    public int compareTo(RSSElement o) {
-
-        int result = publicationDate.compareTo(o.getPublicationDate());
-
-        if (result<0) return 1;
-        if (result>0) return -1;
-
-      return  0;
-
-
-    }
 
 
 }
