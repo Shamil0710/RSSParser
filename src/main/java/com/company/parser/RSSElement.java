@@ -9,14 +9,9 @@ public class RSSElement implements Comparable<RSSElement> {
     private String title;
     private String url;
     private LocalDateTime publicationDate;
-    private String componentUrl;
 
-    public RSSElement(String title, String url, LocalDateTime publicationDate, String componentUrl) {
-        this.title = title;
-        this.url = url;
-        this.publicationDate = publicationDate;
-        this.componentUrl = componentUrl; //TODO Разобратся как добавлять данную строку к объекту
-    }
+
+
 
 
     public RSSElement(String title, String url, LocalDateTime publicationDate) {
@@ -41,14 +36,6 @@ public class RSSElement implements Comparable<RSSElement> {
 
     public LocalDateTime getPublicationDate() {
         return publicationDate;
-    }
-
-    public String getComponentUrl() {
-        return componentUrl;
-    }
-
-    public void setComponentUrl(String componentUrl) {
-        this.componentUrl = componentUrl;
     }
 
 
