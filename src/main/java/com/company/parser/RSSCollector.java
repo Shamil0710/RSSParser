@@ -161,31 +161,6 @@ public class RSSCollector {
 
     }
 
-//    public void sortByTitle () {
-
-
-//      rssElements = rssElements.stream() //todo Допустимо ли такое присваевание?
-//              .sorted(Comparator.comparing(RSSElement::getTitle))
-//              .collect(Collectors.toList());
-//
-////        rssElements.sort(RSSElement::compareTo);
-//    }
-//
-//    public void sortByUrl () {
-//        rssElements = rssElements.stream()
-//                .sorted(Comparator.comparing(RSSElement::getPublicationDate))
-//                .collect(Collectors.toList());
-//    }
-//
-//    public void sortByPublicationDate () {
-//        rssElements = rssElements.stream()
-//                .sorted((o1, o2) -> - o1.compareTo(o2) )
-//                .collect(Collectors.toList());
-//    }
-
-//    public void filter () {
-//        rssElements.stream().filter(rssElements.)
-//    }
 
 
 
