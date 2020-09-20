@@ -159,6 +159,17 @@ public class RSSCollector {
 
     }
 
+    public void filter (String request, String fieldName, String dataFormat) {
+
+        //TODO Продумать как реализовать парс
+
+        rssElements = rssElements.stream()
+                .filter(rssElements -> rssElements.getPublicationDate().equals(parseDate()))
+
+    }
+
+
+
     }
 
 
