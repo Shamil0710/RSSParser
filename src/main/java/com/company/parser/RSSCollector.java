@@ -45,7 +45,7 @@ public class RSSCollector {
             rssElements.add((new RSSElement(
                     element.getElementsByTag("title").text(),
                     element.getElementsByTag("link").text(),
-                    parseDate(element.getElementsByTag("pubDate").text(), component)
+                    parseDate(element.getElementsByTag("pubDate").text(), component.dataFormat)
 
             )));
 
@@ -55,9 +55,9 @@ public class RSSCollector {
 
     }
 
-    private LocalDateTime parseDate (String pubDate, RSSComponent component) {
+    private LocalDateTime parseDate (String pubDate, String dateFormat) {
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(component.getDataFormat(), Locale.ROOT);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(dateFormat, Locale.ROOT);
         LocalDateTime localDate = LocalDateTime.parse(pubDate, dateTimeFormatter);
 
         return localDate;
@@ -106,12 +106,11 @@ public class RSSCollector {
 
     }
 
-    //TODO Стоит ли объединить в один метод и сортировать в зависимости от перанного аргумента (Название поля в формате страки)
 
     //Сортировка с применением Stream API
 
     /**
-     *
+     * ортировка по любому из полей
      * @param fieldName Имя поля для сортировки
      */
 
@@ -139,6 +138,12 @@ public class RSSCollector {
         }
     }
 
+    /**
+     * Фильтрация по полям Title и Url
+     * @param request Аргумен по которому происходит фидьтрация
+     * @param fieldName Поле в котором должен содержатся аргумент для фильтрации
+     */
+
     public void filter (String request, String fieldName) {
 
         if (fieldName.equals("title")){
@@ -152,19 +157,20 @@ public class RSSCollector {
             rssElements = rssElements.stream()
                     .filter(rssElements -> rssElements.getUrl().equals(request))
                     .collect(Collectors.toList());
-        } else if (fieldName.equals("publicationDate")) {
-            //TODO Продумать как реализовать парс
+        } else {
+            System.out.println("Некорректное поле фильтрации");
         }
 
 
     }
 
-    public void filter (String request, String fieldName, String dataFormat) {
+    //Филтрация по DataTime
 
-        //TODO Продумать как реализовать парс
+    public void filterByDate (String request, String dataFormat) {
 
         rssElements = rssElements.stream()
-                .filter(rssElements -> rssElements.getPublicationDate().equals(parseDate()))
+                .filter(rssElements -> rssElements.getPublicationDate().equals(parseDate(request, dataFormat)))
+                .collect(Collectors.toList());
 
     }
 
