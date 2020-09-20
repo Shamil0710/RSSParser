@@ -105,6 +105,8 @@ public class RSSCollector {
 
     }
 
+    //TODO Стоит ли объединить в один метод и сортировать в зависимости от перанного аргумента (Название поля в формате страки)
+
     public void sortByTitle () {
 
         //Сортировка с применением стрима
@@ -114,8 +116,19 @@ public class RSSCollector {
               .sorted(Comparator.comparing(RSSElement::getTitle))
               .collect(Collectors.toList());
 
-
 //        rssElements.sort(RSSElement::compareTo);
+    }
+
+    public void sortByUrl () {
+        rssElements = rssElements.stream()
+                .sorted(Comparator.comparing(RSSElement::getPublicationDate))
+                .collect(Collectors.toList());
+    }
+
+    public void sortByPublicationDate () {
+        rssElements = rssElements.stream()
+                .sorted(Comparator.comparing(RSSElement::getPublicationDate))
+                .collect(Collectors.toList());
     }
 
 //    public void filter () {
