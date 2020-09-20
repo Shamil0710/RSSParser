@@ -16,20 +16,14 @@ public class RSSComponent {
         this.dataFormat = dataFormat;
     }
 
-
     public String getuRL() {
         return uRL;
     }
 
-    public void setuRL(String uRL) {
-        this.uRL = uRL;
-    }
 
     public String getDataFormat() {
         return dataFormat;
     }
 
-    public void setDataFormat(String dataFormat) {
-        this.dataFormat = dataFormat;
-    }
+
 }
