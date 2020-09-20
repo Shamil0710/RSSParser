@@ -50,6 +50,7 @@ public class RSSCollector {
 
             )));
 
+
         }
 
 
@@ -118,9 +119,9 @@ public class RSSCollector {
     public void sort (String fieldName) {
         if (fieldName.equals("publicationDate")){
 
-            rssElements = rssElements.stream() //todo Допустимо ли такое присваевание?
-                    .sorted(Comparator.comparing(RSSElement::getPublicationDate))
-                    .collect(Collectors.toList());
+            rssElements = rssElements.stream()  //TODO Допустимо ли подобное присваевание
+                .sorted((o1, o2) -> - o1.compareTo(o2) )
+                .collect(Collectors.toList());
 
         } else  if (fieldName.equals("url")) {
 
@@ -139,6 +140,14 @@ public class RSSCollector {
             System.out.println("Некорректное поле сортировки");
         }
     }
+
+    public void filter (String request) {
+
+        rssElements = rssElements.stream()
+                .filter(rssElements -> rssElements.getTitle().equals(request)).collect(Collectors.toList());
+
+    }
+
     }
 
 //    public void sortByTitle () {
