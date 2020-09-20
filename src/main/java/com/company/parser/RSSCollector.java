@@ -5,7 +5,6 @@ package com.company.parser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import java.io.BufferedWriter;
-import java.io.Console;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -135,8 +134,7 @@ public class RSSCollector {
                     .sorted(Comparator.comparing(RSSElement::getTitle))
                     .collect(Collectors.toList());
 
-        } else { Exception e = new Exception();
-        e.getStackTrace();
+        } else {
             System.out.println("Некорректное поле сортировки");
         }
     }
