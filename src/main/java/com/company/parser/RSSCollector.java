@@ -113,7 +113,7 @@ public class RSSCollector {
 
     /**
      *
-     * @param fieldName Имя строки для сортировки
+     * @param fieldName Имя поля для сортировки
      */
 
     public void sort (String fieldName) {
