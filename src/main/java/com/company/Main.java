@@ -26,9 +26,11 @@ public class Main {
 
         rssCollector.collectRSSElements(yandexInternetRssComponent);
 
-        rssCollector.sortByPublicationDate();
+        rssCollector.sort("url");
 
-        rssCollector.toPrint(50,"H:\\Parsing result.html");
+        rssCollector.filter("Сотрудничество Tork и СВЧ поможет поварам стать профессионалами в области гигиены");
+
+        rssCollector.toPrint(200,"H:\\Parsing result.html");
 
     }
 }
