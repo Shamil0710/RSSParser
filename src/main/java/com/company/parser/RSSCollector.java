@@ -5,6 +5,7 @@ package com.company.parser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import java.io.BufferedWriter;
+import java.io.Console;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -107,28 +108,60 @@ public class RSSCollector {
 
     //TODO Стоит ли объединить в один метод и сортировать в зависимости от перанного аргумента (Название поля в формате страки)
 
-    public void sortByTitle () {
+    //Сортировка с применением Stream API
 
-        //Сортировка с применением стрима
-        //todo Допустимо ли такое?
+    /**
+     *
+     * @param fieldName Имя строки для сортировки
+     */
 
-      rssElements = rssElements.stream()
-              .sorted(Comparator.comparing(RSSElement::getTitle))
-              .collect(Collectors.toList());
+    public void sort (String fieldName) {
+        if (fieldName.equals("publicationDate")){
 
-//        rssElements.sort(RSSElement::compareTo);
+            rssElements = rssElements.stream() //todo Допустимо ли такое присваевание?
+                    .sorted(Comparator.comparing(RSSElement::getPublicationDate))
+                    .collect(Collectors.toList());
+
+        } else  if (fieldName.equals("url")) {
+
+            rssElements = rssElements.stream()
+                    .sorted(Comparator.comparing(RSSElement::getPublicationDate))
+                    .collect(Collectors.toList());
+
+        } else if (fieldName.equals("title")){
+
+            rssElements = rssElements.stream()
+                    .sorted(Comparator.comparing(RSSElement::getTitle))
+                    .collect(Collectors.toList());
+
+        } else { Exception e = new Exception();
+        e.getStackTrace();
+            System.out.println("Некорректное поле сортировки");
+        }
+    }
     }
 
-    public void sortByUrl () {
-        rssElements = rssElements.stream()
-                .sorted(Comparator.comparing(RSSElement::getPublicationDate))
-                .collect(Collectors.toList());
-    }
+//    public void sortByTitle () {
 
-    public void sortByPublicationDate () {
-        rssElements = rssElements.stream()
-                .sorted((o1, o2) -> - o1. )
-    }
+
+//      rssElements = rssElements.stream() //todo Допустимо ли такое присваевание?
+//              .sorted(Comparator.comparing(RSSElement::getTitle))
+//              .collect(Collectors.toList());
+//
+////        rssElements.sort(RSSElement::compareTo);
+//    }
+//
+//    public void sortByUrl () {
+//        rssElements = rssElements.stream()
+//                .sorted(Comparator.comparing(RSSElement::getPublicationDate))
+//                .collect(Collectors.toList());
+//    }
+//
+//    public void sortByPublicationDate () {
+//        rssElements = rssElements.stream()
+//                .sorted((o1, o2) -> - o1.compareTo(o2) )
+//                .collect(Collectors.toList());
+//    }
 
 //    public void filter () {
 //        rssElements.stream().filter(rssElements.)
@@ -136,7 +169,7 @@ public class RSSCollector {
 
 
 
-}
+
 
 
 
