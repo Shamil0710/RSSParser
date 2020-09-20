@@ -141,10 +141,23 @@ public class RSSCollector {
         }
     }
 
-    public void filter (String request) {
+    public void filter (String request, String fieldName) {
 
-        rssElements = rssElements.stream()
-                .filter(rssElements -> rssElements.getTitle().equals(request)).collect(Collectors.toList());
+        if (fieldName.equals("title")){
+
+            rssElements = rssElements.stream()
+                    .filter(rssElements -> rssElements.getTitle().equals(request))
+                    .collect(Collectors.toList());
+
+        } else if (fieldName.equals("url")) {
+
+            rssElements = rssElements.stream()
+                    .filter(rssElements -> rssElements.getUrl().equals(request))
+                    .collect(Collectors.toList());
+        } else if (fieldName.equals("publicationDate")) {
+            //TODO Продумать как реализовать парс
+        }
+
 
     }
 
