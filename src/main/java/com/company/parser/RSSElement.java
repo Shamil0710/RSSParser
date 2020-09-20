@@ -15,7 +15,7 @@ public class RSSElement implements Comparable<RSSElement> {
         this.title = title;
         this.url = url;
         this.publicationDate = publicationDate;
-        this.componentUrl = componentUrl;
+        this.componentUrl = componentUrl; //TODO Разобратся как добавлять данную строку к объекту
     }
 
 
