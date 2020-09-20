@@ -127,13 +127,14 @@ public class RSSCollector {
 
     public void sortByPublicationDate () {
         rssElements = rssElements.stream()
-                .sorted(Comparator.comparing(RSSElement::getPublicationDate))
-                .collect(Collectors.toList());
+                .sorted((o1, o2) -> - o1. )
     }
 
 //    public void filter () {
 //        rssElements.stream().filter(rssElements.)
 //    }
+
+
 
 }
 
