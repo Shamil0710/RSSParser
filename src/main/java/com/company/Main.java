@@ -28,7 +28,7 @@ public class Main {
 
         rssCollector.sort("url");
 
-        rssCollector.filter("Сотрудничество Tork и СВЧ поможет поварам стать профессионалами в области гигиены");
+        rssCollector.filter("Сотрудничество Tork и СВЧ поможет поварам стать профессионалами в области гигиены", "title");
 
         rssCollector.toPrint(200,"H:\\Parsing result.html");
 
