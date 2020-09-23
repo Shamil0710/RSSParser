@@ -23,6 +23,34 @@ public class RSSCollector {
         return rssElements;
     }
 import com.company.abstraction.AbstractRSSCollector;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+public class RSSCollector {
+
+
+    public List<RSSElement> getRssElements() {
+        return rssElements;
+    }
 
     private final List<RSSElement> rssElements = new ArrayList<RSSElement>();
 
