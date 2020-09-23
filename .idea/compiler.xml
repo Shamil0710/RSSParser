@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="RSSParser" target="8" />
+      <module name="RSSParser" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
