@@ -11,12 +11,9 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -24,6 +21,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class RSSCollector {
+
+
 
 
     public List<RSSElement> getRssElements() {
@@ -113,13 +112,13 @@ public class RSSCollector {
 
     }
 
-    public static String readOfFile(String directory) {
+    private static java.io.InputStream readOfFile(String directory) {
 
 
-        //Пытаемся прочитать файл
         try {
 
-            return Files.readString(Paths.get(directory));
+            InputStream inputStream;
+            return new BufferedInputStream(Files.newInputStream(Path.of(directory)));
 
         } catch (IOException e) {
             e.fillInStackTrace();
@@ -129,39 +128,93 @@ public class RSSCollector {
         return null;
     }
 
-    public static void collectRSSElementsXML(String directory) throws ParserConfigurationException, IOException, SAXException {
+    public void collectRSSElementsXML(RSSComponent component) {
 
 
-        //оздаем конструктор документа
-        DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        try {
 
-        //Создаем дерево документа
 
-//            Document document = documentBuilder.parse(Files.readString(Paths.get(directory)));
+            //оздаем конструктор документа
+            DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 
-//            Document document = documentBuilder.parse(directory);
 
-        Document document = documentBuilder.parse(new File(directory));
+            //Получаем документ
+            Document document = documentBuilder.parse(readOfFile(component.getuRL()));
 
-        //Получаем корневой элемент
-        //TODO Это RSS или Chanel?
 
-        Node root = document.getDocumentElement();
 
-        //Получаем все под элементы корневого нода
+            //Получаем лист элементов внутри тегов "item"
 
-        NodeList items = root.getChildNodes();
+            NodeList itemNodeList = document.getElementsByTagName("item");
 
-        for (int i = 0; i < items.getLength(); i++) {
+            //Проходимся по всем итемам
 
-            Node item = items.item(i);
+            for (int i = 0; i < itemNodeList.getLength(); i++) {
 
-            if (item.getNodeName().equals("title")) {
-                System.out.println(item.getTextContent());
+
+                if (itemNodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
+
+                    //Если нода является "ELEMENT_NODE приводим её к типу element"
+                    org.w3c.dom.Element itemElement = (org.w3c.dom.Element) itemNodeList.item(i);
+
+
+                    //Создаём список дочерних нодво
+                    NodeList childNodes = itemElement.getChildNodes();
+
+                    RSSElement rssElement = new RSSElement();
+
+                    //Перебираем дочерние ноды
+                    for (int j = 0; j < childNodes.getLength(); j++) {
+
+                        if (childNodes.item(j).getNodeType() == Node.ELEMENT_NODE) {
+                            org.w3c.dom.Element childElement = (org.w3c.dom.Element) childNodes.item(j);
+
+
+                            switch (childElement.getNodeName()) {
+                                case "title": {
+
+                                    rssElement.setTitle(childElement.getTextContent());
+
+                                }
+                                break;
+
+                                case "link": {
+
+                                    rssElement.setUrl(childElement.getTextContent());
+
+                                }
+                                break;
+
+                                case "pubDate": {
+
+                                    rssElement.setPublicationDate(parseDate(childElement.getTextContent(), component));
+
+                                }
+                                break;
+
+
+                            }
+
+
+                        }
+
+
+                    }
+
+                    rssElements.add(rssElement);
+
+
+                }
             }
 
-        }
 
+        } catch (ParserConfigurationException exception) {
+            exception.printStackTrace();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        } catch (SAXException exception) {
+            exception.printStackTrace();
+        }
 
     }
 

@@ -2,8 +2,8 @@ package com.company.parser;
 
 public class RSSComponent {
 
-    String uRL;
-    String dataFormat;
+   private String uRL;
+   private String dataFormat;
 
     /**
      *
