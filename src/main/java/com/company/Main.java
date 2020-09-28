@@ -39,9 +39,7 @@ public class Main {
 
 
 
-        rssCollector.toPrintAndSort(50, true, "H:\\Parsing result.html", repository);
-        rssCollector.toPrintAndSort(50, true, "H:\\Parsing result.html", repository);
-        rssCollector.toPrintAndSort(50, true, "H:\\Parsing result.html", repository);
+
 
     }
 }
