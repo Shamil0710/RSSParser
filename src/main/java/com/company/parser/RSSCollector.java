@@ -43,7 +43,7 @@ public class RSSCollector {
             rssElements.add((new RSSElement(
                     element.getElementsByTag("title").text(),
                     element.getElementsByTag("link").text(),
-                    parseDate(element.getElementsByTag("pubDate").text(), component)
+                    parseDate(element.getElementsByTag("pubDate").text(), component), component.getuRL()
 
             )));
 
@@ -93,6 +93,7 @@ public class RSSCollector {
                 bw.write(element.getTitle() + "<br>");
                 bw.write("<a href=\"" + element.getUrl() + "\">" + element.getUrl() + "</a>" + "<br>");
                 bw.write(element.getPublicationDate().toString() + "<br>");
+                bw.write("<a href=\"" + element.getComponentUrl() + "\">" + element.getComponentUrl() + "</a>" + "<br>");
                 bw.write("<p>");
 
                 count++;
