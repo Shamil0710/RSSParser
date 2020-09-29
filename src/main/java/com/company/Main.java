@@ -30,7 +30,7 @@ public class Main {
 
 //        rssCollector.filter("Сотрудничество Tork и СВЧ поможет поварам стать профессионалами в области гигиены", "title");
 
-        rssCollector.filterByDate("20 Sep 2020 12:33:41", "dd MMM yyyy HH:mm:ss");
+        rssCollector.filterByDate("28 Sep 2020 12:12:12 +0300", "dd MMM yyyy HH:mm:ss Z");
 
         rssCollector.toPrint(200,"H:\\Parsing result.html");
 

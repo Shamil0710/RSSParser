@@ -115,27 +115,46 @@ public class RSSCollector {
      */
 
     public void sort (String fieldName) {
-        if (fieldName.equals("publicationDate")){
 
-            rssElements = rssElements.stream()  //TODO Допустимо ли подобное присваевание
-                .sorted((o1, o2) -> - o1.compareTo(o2) )
-                .collect(Collectors.toList());
+        switch (fieldName) {
 
-        } else  if (fieldName.equals("url")) {
+            case ("publicationDate"): {
 
-            rssElements = rssElements.stream()
-                    .sorted(Comparator.comparing(RSSElement::getPublicationDate))
-                    .collect(Collectors.toList());
+                rssElements = rssElements.stream()
+                        .sorted((o1, o2) -> - o1.compareTo(o2) )
+                        .collect(Collectors.toList());
 
-        } else if (fieldName.equals("title")){
+                break;
+            }
 
-            rssElements = rssElements.stream()
-                    .sorted(Comparator.comparing(RSSElement::getTitle))
-                    .collect(Collectors.toList());
+            case ("url"): {
 
-        } else {
-            System.out.println("Некорректное поле сортировки");
+                rssElements = rssElements.stream()
+                        .sorted(Comparator.comparing(RSSElement::getPublicationDate))
+                        .collect(Collectors.toList());
+
+                break;
+
+            }
+
+            case ("title"): {
+
+                rssElements = rssElements.stream()
+                        .sorted(Comparator.comparing(RSSElement::getTitle))
+                        .collect(Collectors.toList());
+
+                break;
+
+            }
+
+            default: {
+
+                System.out.println("Некорректное поле сортировки");
+
+            }
+
         }
+
     }
 
     /**
@@ -146,30 +165,51 @@ public class RSSCollector {
 
     public void filter (String request, String fieldName) {
 
-        if (fieldName.equals("title")){
+        switch (fieldName) {
 
-            rssElements = rssElements.stream()
-                    .filter(rssElements -> rssElements.getTitle().equals(request))
-                    .collect(Collectors.toList());
+            case ("title"): {
 
-        } else if (fieldName.equals("url")) {
+                rssElements = rssElements.stream()
+                        .filter(rssElements -> rssElements.getTitle().equals(request))
+                        .collect(Collectors.toList());
 
-            rssElements = rssElements.stream()
-                    .filter(rssElements -> rssElements.getUrl().equals(request))
-                    .collect(Collectors.toList());
-        } else {
-            System.out.println("Некорректное поле фильтрации");
+                break;
+
+            }
+
+            case ("url"): {
+
+                rssElements = rssElements.stream()
+                        .filter(rssElements -> rssElements.getUrl().equals(request))
+                        .collect(Collectors.toList());
+
+                break;
+
+            }
+
+            default: {
+
+                System.out.println("Некорректное поле фильтрации");
+
+            }
         }
-
 
     }
 
     //Филтрация по DataTime
 
-    public void filterByDate (String request, String dataFormat) {
+    public void filterByDateAndTime (String request, String dataFormat) {
 
         rssElements = rssElements.stream()
                 .filter(rssElements -> rssElements.getPublicationDate().equals(parseDate(request, dataFormat)))
+                .collect(Collectors.toList());
+
+    }
+
+    public void filterByDate (String request, String dataFormat) {
+
+        rssElements = rssElements.stream()
+                .filter(rssElements -> rssElements.getPublicationDate().toLocalDate().equals(parseDate(request, dataFormat).toLocalDate()))
                 .collect(Collectors.toList());
 
     }
