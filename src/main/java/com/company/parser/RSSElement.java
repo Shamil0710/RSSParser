@@ -3,45 +3,14 @@ package com.company.parser;
 
 import java.time.LocalDateTime;
 
+public class RSSElement extends com.company.abstraction.RSSElement implements Comparable<RSSElement>{
 
-public class RSSElement implements Comparable<RSSElement> {
+    public RSSElement(String title, String url, LocalDateTime publicationDate, String componentUrl) {
 
-    private String title;
-    private String url;
-    private LocalDateTime publicationDate;
+        super(title, url, publicationDate, componentUrl);
 
-
-
-
-
-    public RSSElement(String title, String url, LocalDateTime publicationDate) {
-        this.title = title;
-        this.url = url;
-        this.publicationDate = publicationDate;
     }
 
-
-
-    public String getTitle() {
-        return title;
-    }
-
-
-
-    public String getUrl() {
-        return url;
-    }
-
-
-
-    public LocalDateTime getPublicationDate() {
-        return publicationDate;
-    }
-
-
-
-
-// В связи с реализации сортировки стримами необходимость в данном комараторе отпадает
 
     @Override
     public int compareTo(RSSElement o) {
@@ -51,7 +20,6 @@ public class RSSElement implements Comparable<RSSElement> {
 
 
     }
-
 
 
 }

@@ -23,7 +23,7 @@ public class RSSCollector {
         return rssElements;
     }
 
-    private List<RSSElement> rssElements = new ArrayList<RSSElement>();
+    private final List<RSSElement> rssElements = new ArrayList<RSSElement>();
 
 
     private List<Element> connectAndGetItems(RSSComponent rssComponent) throws IOException {
@@ -45,10 +45,9 @@ public class RSSCollector {
             rssElements.add((new RSSElement(
                     element.getElementsByTag("title").text(),
                     element.getElementsByTag("link").text(),
-                    parseDate(element.getElementsByTag("pubDate").text(), component.dataFormat)
+                    parseDate(element.getElementsByTag("pubDate").text(), component), component.getuRL()
 
             )));
-
 
         }
 
@@ -75,6 +74,7 @@ public class RSSCollector {
         FileWriter f = new FileWriter(saveDirectory, false);
 
 
+
         BufferedWriter bw = new BufferedWriter(f);
 
         int count = 0;
@@ -83,12 +83,14 @@ public class RSSCollector {
         try {
 
 
+
             for (RSSElement  element: rssElements) {
 
                 count++;
                 bw.write(count + " " + element.getTitle() + "<br>");
                 bw.write("<a href=\"" + element.getUrl() + "\">" + element.getUrl() + "</a>" + "<br>");
                 bw.write(element.getPublicationDate().toString() + "<br>");
+                bw.write("<a href=\"" + element.getComponentUrl() + "\">" + element.getComponentUrl() + "</a>" + "<br>");
                 bw.write("<p>");
 
 
