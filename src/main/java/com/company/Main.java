@@ -30,9 +30,9 @@ public class Main {
         rssCollector.collectRSSElements(yandexInternetRssComponent, repository);
 
 
-        rssCollector.toPrintAndSort(50, true, "H:\\Parsing result.html", retailRssComponent, repository);
-        rssCollector.toPrintAndSort(50, true, "H:\\Parsing result.html", retailPressRssComponent, repository);
-        rssCollector.toPrintAndSort(50, true, "H:\\Parsing result.html", yandexInternetRssComponent, repository);
+        rssCollector.toPrintAndSort(50, true, "H:\\Parsing result.html", repository);
+        rssCollector.toPrintAndSort(50, true, "H:\\Parsing result.html", repository);
+        rssCollector.toPrintAndSort(50, true, "H:\\Parsing result.html", repository);
 
     }
 }
