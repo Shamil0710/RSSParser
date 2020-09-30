@@ -22,12 +22,15 @@ public class RSSCollector {
     public List<RSSElement> getRssElements() {
         return rssElements;
     }
+import com.company.abstraction.AbstractRSSCollector;
 
     private final List<RSSElement> rssElements = new ArrayList<RSSElement>();
 
+public class RSSCollector extends AbstractRSSCollector {
 
     private List<Element> connectAndGetItems(RSSComponent rssComponent) throws IOException {
 
+    }
         return Jsoup.connect(rssComponent.getuRL()).get().getElementsByTag("item");
 
     }
