@@ -7,9 +7,9 @@ import java.util.List;
 
 public class AbstractRssRepository {
 
-    List<AbstractRSSElement> rssElements = new ArrayList<>();
+    List<RSSElement> rssElements = new ArrayList<>();
 
-    public List<AbstractRSSElement> getRssElements() {
+    public List<RSSElement> getRssElements() {
         return rssElements;
     }
 
