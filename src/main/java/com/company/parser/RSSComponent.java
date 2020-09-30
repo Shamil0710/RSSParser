@@ -1,6 +1,8 @@
 package com.company.parser;
 
-public class RSSComponent extends com.company.abstraction.RSSComponent {
+import com.company.abstraction.AbstractRSSComponent;
+
+public class RSSComponent extends AbstractRSSComponent {
 
     /**
      * @param uRL        URL адрес RSS-ленты
