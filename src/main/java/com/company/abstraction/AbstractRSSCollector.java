@@ -71,13 +71,14 @@ public class AbstractRSSCollector implements IRSSCollector {
 
         if (sorting) {
 
-            repository.getRssElements().sort(RSSElement::compareTo);
+            repository.getRssElements().sort(AbstractRSSElement::compareTo);
+
         }
 
         try {
 
 
-            for (RSSElement element : repository.getRssElements()) {
+            for (AbstractRSSElement element : repository.getRssElements()) {
 
 
                 bw.write(element.getTitle() + "<br>");
