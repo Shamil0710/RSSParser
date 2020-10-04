@@ -1,7 +1,5 @@
 package com.company.abstraction;
 
-import com.company.parser.RSSElement;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,5 +10,7 @@ public class AbstractRssRepository {
     public List<AbstractRSSElement> getRssElements() {
         return rssElements;
     }
+
+    //TODO После слияния веток сюда будут перенесенны методы связанне с фильтрацией, поиском и выводом.
 
 }

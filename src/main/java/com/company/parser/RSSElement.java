@@ -13,7 +13,5 @@ public class RSSElement extends AbstractRSSElement {
 
     }
 
-
-
 }
 
