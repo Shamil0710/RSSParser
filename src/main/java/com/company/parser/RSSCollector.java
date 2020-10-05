@@ -167,20 +167,37 @@ public class RSSCollector {
 
         switch (fieldName) {
 
+            //TODO стоит ли добавить фильтрацию как по полному так и по частичному совпадению или оставить только один?
+
+            //Фильтрация по полному совпажению
+
+//            case ("title"): {
+//
+//                rssElements = rssElements.stream()
+//                        .filter(rssElements -> rssElements.getTitle().equals(request))
+//                        .collect(Collectors.toList());
+//
+//                break;
+//
+//            }
+
+            //Фильтрация по частичному совпадению
+
             case ("title"): {
 
                 rssElements = rssElements.stream()
-                        .filter(rssElements -> rssElements.getTitle().equals(request))
+                        .filter(rssElements -> rssElements.getTitle().contains(request))
                         .collect(Collectors.toList());
 
                 break;
 
             }
 
+
             case ("url"): {
 
                 rssElements = rssElements.stream()
-                        .filter(rssElements -> rssElements.getUrl().equals(request))
+                        .filter(rssElements -> rssElements.getUrl().contains(request))
                         .collect(Collectors.toList());
 
                 break;
