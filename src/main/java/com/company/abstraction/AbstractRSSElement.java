@@ -16,6 +16,10 @@ public abstract class AbstractRSSElement implements Comparable<com.company.parse
         this.componentUrl = componentUrl;
     }
 
+    public AbstractRSSElement() {
+
+    }
+
     public String getTitle() {
         return title;
     }

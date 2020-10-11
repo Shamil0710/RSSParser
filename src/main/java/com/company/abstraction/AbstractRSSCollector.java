@@ -18,14 +18,14 @@ import java.util.Locale;
 public class AbstractRSSCollector implements IRSSCollector {
 
 
-    private List<Element> connectAndGetItems(RSSComponent rssComponent) throws IOException {
+    private List<Element> connectAndGetItems(AbstractRSSComponent rssComponent) throws IOException {
 
         return Jsoup.connect(rssComponent.getuRL()).get().getElementsByTag("item");
 
     }
 
 
-    public void collectRSSElements(RSSComponent component, RssRepository repository) throws IOException {
+    public void collectRSSElements(AbstractRSSComponent component, AbstractRssRepository repository) throws IOException {
 
 
         List<Element> elements = connectAndGetItems(component);
@@ -33,21 +33,22 @@ public class AbstractRSSCollector implements IRSSCollector {
 
         for (Element element : elements) {
 
-            repository.getRssElements().add((new RSSElement(
+            repository.getRssElements().add((new AbstractRSSElement(
                     element.getElementsByTag("title").text(),
                     element.getElementsByTag("link").text(),
-                    parseDate(element.getElementsByTag("pubDate").text(), component), component.getuRL()
+                    parseDate(element.getElementsByTag("pubDate").text(), component.getDataFormat()), component.getuRL()
 
-            )));
+            ) {
+            }));
 
         }
 
 
     }
 
-    private LocalDateTime parseDate(String pubDate, RSSComponent component) {
+    private LocalDateTime parseDate(String pubDate, String dateFormat) {
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(component.getDataFormat(), Locale.ROOT);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(dateFormat, Locale.ROOT);
         LocalDateTime localDate = LocalDateTime.parse(pubDate, dateTimeFormatter);
 
         return localDate;
