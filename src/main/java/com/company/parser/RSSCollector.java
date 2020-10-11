@@ -1,8 +1,6 @@
 package com.company.parser;
 
 
-
-import com.company.abstraction.AbstractRSSCollector;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.w3c.dom.Document;
@@ -10,20 +8,24 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+
+
+
 
 public class RSSCollector {
 
@@ -129,7 +131,6 @@ public class RSSCollector {
             e.fillInStackTrace();
         }
 
-
         return null;
     }
 
@@ -220,6 +221,31 @@ public class RSSCollector {
         } catch (SAXException exception) {
             exception.printStackTrace();
         }
+
+    }
+
+    public void parseJAXB (RSSComponent component) throws JAXBException {
+
+        String xmlData = "";
+
+
+        try {
+
+            InputStream inputStream;
+          xmlData =  new BufferedInputStream(Files.newInputStream(Path.of(component.getuRL()))).toString();
+
+        } catch (IOException e) {
+            e.fillInStackTrace();
+        }
+
+        StringReader stringReader = new StringReader(xmlData);
+
+        JAXBContext context = JAXBContext.newInstance(RSSElement.class);
+
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        RSSElement rssElement = (RSSElement) unmarshaller.unmarshal(stringReader);
+
 
     }
 
