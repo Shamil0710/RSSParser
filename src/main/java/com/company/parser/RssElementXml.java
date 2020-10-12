@@ -3,10 +3,13 @@ package com.company.parser;
 import com.company.abstraction.AbstractRSSElement;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.time.LocalDateTime;
 
-@XmlType(name = "item")
+//@XmlType(name = "item")
+
+@XmlRootElement
 public class RssElementXml extends AbstractRSSElement {
 
 
@@ -31,9 +34,9 @@ public class RssElementXml extends AbstractRSSElement {
     public void setPublicationDate(LocalDateTime publicationDate) {
         super.setPublicationDate(publicationDate);
     }
-
-    @Override
-    public void setComponentUrl(String componentUrl) {
-        super.setComponentUrl(componentUrl);
-    }
+//
+//    @Override
+//    public void setComponentUrl(String componentUrl) {
+//        super.setComponentUrl(componentUrl);
+//    }
 }

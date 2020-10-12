@@ -5,12 +5,13 @@ import com.company.abstraction.AbstractRssRepository;
 import com.company.parser.RSSComponent;
 import com.company.parser.RssRepository;
 
+import javax.xml.bind.JAXBException;
 import java.io.IOException;
 
 
 public interface IRSSCollector {
 
-    void collectRSSElements(AbstractRSSComponent component, AbstractRssRepository repository) throws IOException;
+    void collectRSSElements(AbstractRSSComponent component, AbstractRssRepository repository) throws IOException, JAXBException;
 
     void toPrintAndSort(int numberOfLines, boolean sorting, String saveDirectory, RssRepository repository) throws IOException;
 
