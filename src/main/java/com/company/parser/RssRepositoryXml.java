@@ -13,9 +13,12 @@ public class RssRepositoryXml extends AbstractRssRepository {
 
     List<AbstractRSSElement> rssElements = new ArrayList<>();
 
+
     @XmlElementWrapper(name = "channel")
     public void setRssElements(List<AbstractRSSElement> rssElements) {
         this.rssElements = rssElements;
     }
+
+
 
 }

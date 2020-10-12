@@ -7,6 +7,7 @@ import com.company.parser.RssRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
+import javax.xml.bind.JAXBException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class AbstractRSSCollector implements IRSSCollector {
     }
 
 
-    public void collectRSSElements(AbstractRSSComponent component, AbstractRssRepository repository) throws IOException {
+    public void collectRSSElements(AbstractRSSComponent component, AbstractRssRepository repository) throws IOException, JAXBException {
 
 
         List<Element> elements = connectAndGetItems(component);
