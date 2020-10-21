@@ -17,21 +17,25 @@ public class RssCollectorXml extends AbstractRSSCollector {
     @Override
     public void collectRSSElements(AbstractRSSComponent component, AbstractRssRepository repository) throws JAXBException {
 
-        String xmlData = "";
-
-
-        try {
-
-            InputStream inputStream;
-            xmlData =  new BufferedInputStream(Files.newInputStream(Path.of(component.getuRL()))).toString();
-
-        } catch (IOException e) {
-            e.fillInStackTrace();
-        }
-
-        StringReader stringReader = new StringReader(xmlData);
+//        String xmlData = "";
+//
+//
+//        try {
+//
+//            InputStream inputStream;
+//            xmlData =  new BufferedInputStream(Files.newInputStream(Path.of(component.getuRL()))).toString();
+//
+//        } catch (IOException e) {
+//            e.fillInStackTrace();
+//        }
+//
+//        StringReader stringReader = new StringReader(xmlData);
 
         JAXBContext context = JAXBContext.newInstance(RssElementXml.class, RssRepositoryXml.class);
+
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        RssRepositoryXml repositoryXml = (RssRepositoryXml) unmarshaller.unmarshal(new File(component.getuRL()));
 
     }
 }

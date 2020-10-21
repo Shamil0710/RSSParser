@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 //@XmlType(name = "item")
 
-@XmlRootElement
+
 public class RssElementXml extends AbstractRSSElement {
 
 
@@ -34,9 +34,9 @@ public class RssElementXml extends AbstractRSSElement {
     public void setPublicationDate(LocalDateTime publicationDate) {
         super.setPublicationDate(publicationDate);
     }
-//
-//    @Override
-//    public void setComponentUrl(String componentUrl) {
-//        super.setComponentUrl(componentUrl);
-//    }
+
+    @Override
+    public void setComponentUrl(String componentUrl) {
+        super.setComponentUrl(componentUrl);
+    }
 }
