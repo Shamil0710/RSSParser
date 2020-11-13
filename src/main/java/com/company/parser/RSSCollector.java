@@ -67,41 +67,41 @@ public class RSSCollector {
      * @throws IOException
      */
 
-    public void toPrint (int numberOfLines, String saveDirectory) throws IOException {
-
-   FileWriter f = new FileWriter(saveDirectory, false);
-
-
-        BufferedWriter bw = new BufferedWriter(f);
-
-        int count = 0;
-
-
-        try {
-
-
-            for (RSSElement  element: rssElements) {
-
-                count++;
-                bw.write(count + " " + element.getTitle() + "<br>");
-                bw.write("<a href=\"" + element.getUrl() + "\">" + element.getUrl() + "</a>" + "<br>");
-                bw.write(element.getPublicationDate().toString() + "<br>");
-                bw.write("<p>");
-
-
-                if (count == numberOfLines) break;
-
-
-            }
-
-        }
-        finally {
-            bw.close();
-            f.close();
-
-        }
-
-    }
+//    public void toPrint (int numberOfLines, String saveDirectory) throws IOException {
+//
+//   FileWriter f = new FileWriter(saveDirectory, false);
+//
+//
+//        BufferedWriter bw = new BufferedWriter(f);
+//
+//        int count = 0;
+//
+//
+//        try {
+//
+//
+//            for (RSSElement  element: rssElements) {
+//
+//                count++;
+//                bw.write(count + " " + element.getTitle() + "<br>");
+//                bw.write("<a href=\"" + element.getUrl() + "\">" + element.getUrl() + "</a>" + "<br>");
+//                bw.write(element.getPublicationDate().toString() + "<br>");
+//                bw.write("<p>");
+//
+//
+//                if (count == numberOfLines) break;
+//
+//
+//            }
+//
+//        }
+//        finally {
+//            bw.close();
+//            f.close();
+//
+//        }
+//
+//    }
 
     public void toSort () {
         rssElements.sort(RSSElement::compareTo);

@@ -28,7 +28,7 @@ public class Main {
 
         rssCollector.toSort();
 
-        rssCollector.toPrint(50, "H:\\Parsing result.html");
+        rssCollector.toPrint(50, Property.DIRECTORY);
 
     }
 }
