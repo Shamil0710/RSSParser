@@ -5,6 +5,8 @@ import java.util.List;
 
 public abstract class AbstractRssRepository {
 
+    //TODO бсудить как должен правильно реализовыватся паттерн репозиторий
+
     List<AbstractRSSElement> rssElements = new ArrayList<>();
 
     public List<AbstractRSSElement> getRssElements() {
