@@ -30,14 +30,14 @@ public class Main {
 //
 //
 //        rssCollector.toPrintAndSort(50, true, "H:\\Parsing result.html", repository);
-
-        RssCollectorXml collectorXml = new RssCollectorXml();
-        RssRepositoryXml repositoryXml = new RssRepositoryXml();
-
-        RSSComponent rssComponentXml = new RSSComponent("H:\\www.retail.ru.xml", "E, dd MMM yyyy HH:mm:ss Z");
-
-        collectorXml.collectRSSElements(rssComponentXml, repositoryXml);
-
+//
+//        RssCollectorXml collectorXml = new RssCollectorXml();
+//        RssRepositoryXml repositoryXml = new RssRepositoryXml();
+//
+//        RSSComponent rssComponentXml = new RSSComponent("H:\\www.retail.ru.xml", "E, dd MMM yyyy HH:mm:ss Z");
+//
+//        collectorXml.collectRSSElements(rssComponentXml, repositoryXml);
+//
 
 
         rssCollector.toPrintAndSort(50, true, "H:\\Parsing result.html", repository);

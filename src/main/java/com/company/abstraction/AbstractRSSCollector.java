@@ -1,13 +1,11 @@
 package com.company.abstraction;
 
+import com.company.Property;
 import com.company.interfaces.IRSSCollector;
-import com.company.parser.RSSComponent;
-import com.company.parser.RSSElement;
 import com.company.parser.RssRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
-import javax.xml.bind.JAXBException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,15 +19,21 @@ public class AbstractRSSCollector implements IRSSCollector {
 
     private List<Element> connectAndGetItems(AbstractRSSComponent rssComponent) throws IOException {
 
-        return Jsoup.connect(rssComponent.getuRL()).get().getElementsByTag("item");
+        return Jsoup.connect(rssComponent.getuRL()).get().getElementsByTag(Property.ITEM);
 
     }
 
 
-    public void collectRSSElements(AbstractRSSComponent component, AbstractRssRepository repository) throws IOException, JAXBException {
+    public void collectRSSElements(AbstractRSSComponent component, AbstractRssRepository repository) {
 
 
-        List<Element> elements = connectAndGetItems(component);
+        List<Element> elements = null;
+        try {
+            elements = connectAndGetItems(component);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Ошибка при попытке соединения");
+        }
 
 
         for (Element element : elements) {
@@ -39,7 +43,9 @@ public class AbstractRSSCollector implements IRSSCollector {
                     element.getElementsByTag("link").text(),
                     parseDate(element.getElementsByTag("pubDate").text(), component.getDataFormat()), component.getuRL()
 
-            ) {
+            )
+            {
+
             }));
 
         }
@@ -62,9 +68,22 @@ public class AbstractRSSCollector implements IRSSCollector {
      * @throws IOException
      */
 
-    public void toPrintAndSort(int numberOfLines, boolean sorting, String saveDirectory, RssRepository repository) throws IOException {
+    public void toPrintAndSort(int numberOfLines, boolean sorting, String saveDirectory, RssRepository repository)
 
-        FileWriter f = new FileWriter(saveDirectory, false);
+    //TODO Уточнить как сделать вменяемую обработку ошибок
+
+    {
+
+        FileWriter f = null;
+
+        try {
+            f = new FileWriter(saveDirectory, false);
+        } catch (IOException e) {
+
+            System.out.println("Ошибка при создании выходного потока");
+
+            e.printStackTrace();
+        }
 
 
         BufferedWriter bw = new BufferedWriter(f);
@@ -89,15 +108,25 @@ public class AbstractRSSCollector implements IRSSCollector {
                 bw.write("<p>");
 
                 count++;
+
                 if (count == numberOfLines) break;
 
 
             }
 
+        } catch (IOException e) {
+            e.printStackTrace();
+
         } finally {
 
-            bw.close();
-            f.close();
+            try {
+                bw.close();
+                f.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+
 
         }
 

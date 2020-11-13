@@ -11,9 +11,9 @@ import java.io.IOException;
 
 public interface IRSSCollector {
 
-    void collectRSSElements(AbstractRSSComponent component, AbstractRssRepository repository) throws IOException, JAXBException;
+    void collectRSSElements(AbstractRSSComponent component, AbstractRssRepository repository);
 
-    void toPrintAndSort(int numberOfLines, boolean sorting, String saveDirectory, RssRepository repository) throws IOException;
+    void toPrintAndSort(int numberOfLines, boolean sorting, String saveDirectory, RssRepository repository);
 
 
 }

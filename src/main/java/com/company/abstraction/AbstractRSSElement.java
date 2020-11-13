@@ -6,7 +6,7 @@ public abstract class AbstractRSSElement implements Comparable<com.company.parse
 
     private String title;
     private String url;
-    protected LocalDateTime publicationDate;
+    private LocalDateTime publicationDate;
     private String componentUrl;
 
     public AbstractRSSElement(String title, String url, LocalDateTime publicationDate, String componentUrl) {
@@ -53,18 +53,15 @@ public abstract class AbstractRSSElement implements Comparable<com.company.parse
     }
 
     @Override
-    public int compareTo(com.company.parser.RSSElement o) {
+    public int compareTo(AbstractRSSElement o) {
 
-        if (!(o == null)) {
+        if (!(datetime == null)) {
 
-            return publicationDate.compareTo(o.getPublicationDate());
+            return publicationDate.compareTo(datetime.getPublicationDate());
 
         }
 
-
         return 0;
-
-
     }
 
 }
