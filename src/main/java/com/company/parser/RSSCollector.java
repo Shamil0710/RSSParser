@@ -43,7 +43,7 @@ public class RSSCollector {
             rssElements.add((new RSSElement(
                     element.getElementsByTag("title").text(),
                     element.getElementsByTag("link").text(),
-                    parseDate(element.getElementsByTag("pubDate").text(), component)
+                    parseDate(element.getElementsByTag("pubDate").text(), component.dataFormat)
 
             )));
 
@@ -52,9 +52,9 @@ public class RSSCollector {
 
     }
 
-    private LocalDateTime parseDate (String pubDate, RSSComponent component) {
+    private LocalDateTime parseDate (String pubDate, String dateFormat) {
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(component.getDataFormat(), Locale.ROOT);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(dateFormat, Locale.ROOT);
         LocalDateTime localDate = LocalDateTime.parse(pubDate, dateTimeFormatter);
 
         return localDate;
@@ -63,52 +63,50 @@ public class RSSCollector {
     /**
      *
      * @param numberOfLines Количество новостей для вывода
-     * @param sorting Необходима ли сортировка
      * @param saveDirectory Директория для сохронения результата
      * @throws IOException
      */
 
-    public void toPrintAndSort (int numberOfLines, boolean sorting, String saveDirectory) throws IOException {
+//    public void toPrint (int numberOfLines, String saveDirectory) throws IOException {
+//
+//   FileWriter f = new FileWriter(saveDirectory, false);
+//
+//
+//        BufferedWriter bw = new BufferedWriter(f);
+//
+//        int count = 0;
+//
+//
+//        try {
+//
+//
+//            for (RSSElement  element: rssElements) {
+//
+//                count++;
+//                bw.write(count + " " + element.getTitle() + "<br>");
+//                bw.write("<a href=\"" + element.getUrl() + "\">" + element.getUrl() + "</a>" + "<br>");
+//                bw.write(element.getPublicationDate().toString() + "<br>");
+//                bw.write("<p>");
+//
+//
+//                if (count == numberOfLines) break;
+//
+//
+//            }
+//
+//        }
+//        finally {
+//            bw.close();
+//            f.close();
+//
+//        }
+//
+//    }
 
-   FileWriter f = new FileWriter(saveDirectory, false);
-
-
-
-        BufferedWriter bw = new BufferedWriter(f);
-
-        int count = 0;
-
-        if (sorting) {
-
-            rssElements.sort(RSSElement::compareTo);
-        }
-
-        try {
-
-
-
-            for (RSSElement  element: rssElements) {
-
-
-                bw.write(element.getTitle() + "<br>");
-                bw.write("<a href=\"" + element.getUrl() + "\">" + element.getUrl() + "</a>" + "<br>");
-                bw.write(element.getPublicationDate().toString() + "<br>");
-                bw.write("<p>");
-
-                count++;
-                if (count == numberOfLines) break;
-
-
-            }
-
-        }
-        finally {
-            bw.close();
-            f.close();
-
-        }
-
+    public void toSort () {
+        rssElements.sort(RSSElement::compareTo);
     }
+
     }
 
 
