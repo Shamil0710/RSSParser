@@ -1,35 +1,17 @@
 package com.company.parser;
 
-public class RSSComponent {
+import com.company.abstraction.AbstractRSSComponent;
 
-    String uRL;
-    String dataFormat;
+public class RSSComponent extends AbstractRSSComponent {
 
     /**
-     *
-     * @param uRL URL адрес RSS-ленты
+     * @param uRL        URL адрес RSS-ленты
      * @param dataFormat Формат записи даты/времмени для данной RSS-ленты
      */
 
     public RSSComponent(String uRL, String dataFormat) {
-        this.uRL = uRL;
-        this.dataFormat = dataFormat;
-    }
 
+        super(uRL, dataFormat);
 
-    public String getuRL() {
-        return uRL;
-    }
-
-    public void setuRL(String uRL) {
-        this.uRL = uRL;
-    }
-
-    public String getDataFormat() {
-        return dataFormat;
-    }
-
-    public void setDataFormat(String dataFormat) {
-        this.dataFormat = dataFormat;
     }
 }
