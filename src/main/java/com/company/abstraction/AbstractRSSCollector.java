@@ -43,8 +43,7 @@ public class AbstractRSSCollector implements IRSSCollector {
                     element.getElementsByTag("link").text(),
                     parseDate(element.getElementsByTag("pubDate").text(), component.getDataFormat()), component.getuRL()
 
-            )
-            {
+            ) {
 
             }));
 
@@ -74,62 +73,45 @@ public class AbstractRSSCollector implements IRSSCollector {
 
     {
 
-        FileWriter f = null;
 
-        try {
-            f = new FileWriter(saveDirectory, false);
-        } catch (IOException e) {
-
-            System.out.println("Ошибка при создании выходного потока");
-
-            e.printStackTrace();
-        }
+        try (FileWriter f = new FileWriter(saveDirectory, false);
+             BufferedWriter bw = new BufferedWriter(f)) {
 
 
-        BufferedWriter bw = new BufferedWriter(f);
+            int count = 0;
 
-        int count = 0;
+            if (sorting) {
 
-        if (sorting) {
-
-            repository.getRssElements().sort(RSSElement::compareTo);
-        }
-
-        try {
-
-
-            for (RSSElement element : repository.getRssElements()) {
-
-
-                bw.write(element.getTitle() + "<br>");
-                bw.write("<a href=\"" + element.getUrl() + "\">" + element.getUrl() + "</a>" + "<br>");
-                bw.write(element.getPublicationDate().toString() + "<br>");
-                bw.write("<a href=\"" + element.getComponentUrl() + "\">" + element.getComponentUrl() + "</a>" + "<br>");
-                bw.write("<p>");
-
-                count++;
-
-                if (count == numberOfLines) break;
-
-
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        } finally {
-
-            try {
-                bw.close();
-                f.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+                repository.getRssElements().sort(AbstractRSSElement::compareTo);
 
             }
 
 
+
+
+                for (AbstractRSSElement element : repository.getRssElements()) {
+
+
+                    bw.write(element.getTitle() + "<br>");
+                    bw.write("<a href=\"" + element.getUrl() + "\">" + element.getUrl() + "</a>" + "<br>");
+                    bw.write(element.getPublicationDate().toString() + "<br>");
+                    bw.write("<a href=\"" + element.getComponentUrl() + "\">" + element.getComponentUrl() + "</a>" + "<br>");
+                    bw.write("<p>");
+
+                    count++;
+
+                    if (count == numberOfLines) break;
+
+
+                }
+
+
+
+            } catch (IOException exception) {
+            exception.printStackTrace();
         }
 
     }
 
-}
+    }
+
