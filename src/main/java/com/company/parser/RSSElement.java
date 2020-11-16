@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 
 @XmlRootElement(name = "item")
-public class RSSElement implements Comparable<RSSElement>{
+public class RSSElement implements Comparable<RSSElement> {
 
     private String title;
     private String url;
@@ -55,17 +55,15 @@ public class RSSElement implements Comparable<RSSElement>{
     }
 
 
-
-
     @Override
     public int compareTo(RSSElement o) {
 
         int result = publicationDate.compareTo(o.getPublicationDate());
 
-        if (result<0) return 1;
-        if (result>0) return -1;
+        if (result < 0) return 1;
+        if (result > 0) return -1;
 
-      return  0;
+        return 0;
 
 
     }
