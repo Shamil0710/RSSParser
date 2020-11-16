@@ -52,8 +52,8 @@ public abstract class AbstractRSSElement implements Comparable<com.company.parse
         this.componentUrl = componentUrl;
     }
 
-    @Override
-    public int compareTo(AbstractRSSElement o) {
+
+    public int compareTo(AbstractRSSElement datetime) {
 
         if (!(datetime == null)) {
 
