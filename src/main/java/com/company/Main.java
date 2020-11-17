@@ -1,9 +1,6 @@
 package com.company;
 
 
-import com.company.parser.RSSCollector;
-import com.company.parser.RSSComponent;
-
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 
