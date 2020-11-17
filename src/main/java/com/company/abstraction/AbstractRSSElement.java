@@ -2,7 +2,7 @@ package com.company.abstraction;
 
 import java.time.LocalDateTime;
 
-public abstract class AbstractRSSElement implements Comparable<com.company.parser.RSSElement> {
+public abstract class AbstractRSSElement implements Comparable<AbstractRSSElement> {
 
     private String title;
     private String url;
@@ -52,16 +52,12 @@ public abstract class AbstractRSSElement implements Comparable<com.company.parse
         this.componentUrl = componentUrl;
     }
 
-
     public int compareTo(AbstractRSSElement datetime) {
 
-        if (!(datetime == null)) {
-
+        if (datetime != null) {
             return publicationDate.compareTo(datetime.getPublicationDate());
-
         }
 
         return 0;
     }
-
 }

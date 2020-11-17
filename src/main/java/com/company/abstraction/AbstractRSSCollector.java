@@ -23,7 +23,6 @@ public class AbstractRSSCollector implements IRSSCollector {
     }
 
     public void collectRSSElements(AbstractRSSComponent component, AbstractRssRepository repository) {
-
         List<Element> elements = null;
         try {
             elements = connectAndGetItems(component);
@@ -31,7 +30,6 @@ public class AbstractRSSCollector implements IRSSCollector {
             e.printStackTrace();
             System.out.println("Ошибка при попытке соединения");
         }
-
         for (Element element : elements) {
             repository.getRssElements().add((new AbstractRSSElement(
                     element.getElementsByTag("title").text(),

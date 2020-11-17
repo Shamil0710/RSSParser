@@ -13,7 +13,4 @@ public interface IRSSCollector {
 
     void collectRSSElements(AbstractRSSComponent component, AbstractRssRepository repository);
 
-    void toPrintAndSort(int numberOfLines, boolean sorting, String saveDirectory, RssRepository repository);
-
-
 }
