@@ -1,6 +1,7 @@
 package com.company.parser;
 
 
+import com.company.abstraction.AbstractRSSCollector;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.w3c.dom.Document;
@@ -24,7 +25,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class RSSCollector {
+public class RSSCollector extends AbstractRSSCollector {
 
     public List<RSSElement> getRssElements() {
         return rssElements;
