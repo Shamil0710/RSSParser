@@ -19,8 +19,16 @@ public class AbstractRSSCollector implements IRSSCollector {
 
     //TODO СТоит ли вообще имплиментить тут этот интрефейс?
     @Override
-    public List<RSSElement> collectRSSElements(AbstractRSSComponent component, AbstractRssRepository repository) {
-        return null;
+    public List<RSSElement> collectRSSElements(AbstractRSSComponent component, List<AbstractRSSElement> rssElements) {
+        //TODO Насколько это корректно, какое исключение использовать в подобной ситуации;
+        throw new NullPointerException("Метод не реализован");
+
+    }
+
+    protected static LocalDateTime parseDate(String pubDate, String dataFormat) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(dataFormat, Locale.ROOT);
+        LocalDateTime localDate = LocalDateTime.parse(pubDate, dateTimeFormatter);
+        return localDate;
     }
 //
 //    private List<Element> connectAndGetItems(AbstractRSSComponent rssComponent) throws IOException {

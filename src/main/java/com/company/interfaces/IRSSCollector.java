@@ -1,6 +1,7 @@
 package com.company.interfaces;
 
 import com.company.abstraction.AbstractRSSComponent;
+import com.company.abstraction.AbstractRSSElement;
 import com.company.abstraction.AbstractRssRepository;
 import com.company.parser.RSSComponent;
 import com.company.parser.RSSElement;
@@ -13,6 +14,6 @@ import java.util.List;
 
 public interface IRSSCollector {
 
-    List<RSSElement> collectRSSElements(AbstractRSSComponent component, AbstractRssRepository repository);
+    List<RSSElement> collectRSSElements(AbstractRSSComponent component, List<AbstractRSSElement> rssElements);
 
 }

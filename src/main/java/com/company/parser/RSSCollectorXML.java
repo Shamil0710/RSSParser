@@ -12,14 +12,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class RSSCollectorXML extends AbstractRSSCollector implements IRSSCollector {
 
@@ -33,14 +28,14 @@ public class RSSCollectorXML extends AbstractRSSCollector implements IRSSCollect
 //        return null;
 //    }
     //TODO Стоит ли этот метод вывести в абстракцию?
-    private LocalDateTime parseDate(String pubDate, String dataFormat) {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(dataFormat, Locale.ROOT);
-        LocalDateTime localDate = LocalDateTime.parse(pubDate, dateTimeFormatter);
-        return localDate;
-    }
+//    private LocalDateTime parseDate(String pubDate, String dataFormat) {
+//        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(dataFormat, Locale.ROOT);
+//        LocalDateTime localDate = LocalDateTime.parse(pubDate, dateTimeFormatter);
+//        return localDate;
+//    }
 
-    public List<RSSElement> collectRSSElements(RSSComponent component) {
-        List<RSSElement> rssElements = new ArrayList<RSSElement>();
+    public static List<RSSElement> collectRSSElements(RSSComponent component, List<RSSElement> rssElements) {
+//        List<RSSElement> rssElements = new ArrayList<RSSElement>();
         try {
             //оздаем конструктор документа
             DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
