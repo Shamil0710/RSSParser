@@ -5,11 +5,7 @@ import com.company.abstraction.AbstractRssRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,19 +23,16 @@ public class RssRepository extends AbstractRssRepository {
                 return rssElements = rssElements.stream()
                         .sorted((o1, o2) -> -o1.compareTo(o2))
                         .collect(Collectors.toList());
-
             }
             case ("url"): {
                 return rssElements = rssElements.stream()
                         .sorted(Comparator.comparing(RSSElement::getPublicationDate))
                         .collect(Collectors.toList());
-
             }
             case ("title"): {
                 return rssElements = rssElements.stream()
                         .sorted(Comparator.comparing(RSSElement::getTitle))
                         .collect(Collectors.toList());
-
             }
             default: {
                 System.out.println("Некорректное поле сортировки");
@@ -54,46 +47,33 @@ public class RssRepository extends AbstractRssRepository {
      * @param request   Аргумен по которому происходит фидьтрация
      * @param fieldName Поле в котором должен содержатся аргумент для фильтрации
      */
-//    public List<RSSElement> filter(String request, String fieldName, List<RSSElement> rssElements) {
-//
-//        switch (fieldName) {
-//
-//            //TODO стоит ли добавить фильтрацию как по полному так и по частичному совпадению или оставить только один?
-
-    //Фильтрация по полному совпажению
-
-//            case ("title"): {
-//
-//                rssElements = rssElements.stream()
-//                        .filter(rssElements -> rssElements.getTitle().equals(request))
-//                        .collect(Collectors.toList());
-//
-//                break;
-//
-//            }
-
-//            //Фильтрация по частичному совпадению
+    public static List<RSSElement> filter(String request, String fieldName, List<RSSElement> rssElements) {
+        switch (fieldName) {
+            //TODO стоит ли добавить фильтрацию как по полному так и по частичному совпадению или оставить только один?
+//          //Фильтрация по полному совпажению
 //            case ("title"): {
 //               return rssElements = rssElements.stream()
-//                        .filter(rssElements -> rssElements.getTitle().contains(request))
+//                        .filter(element -> element.getTitle().equals(request))
 //                        .collect(Collectors.toList());
-//                break;
-//
 //            }
-//            case ("url"): {
-//                rssElements = rssElements.stream()
-//                        .filter(rssElements -> rssElements.getUrl().contains(request))
-//                        .collect(Collectors.toList());
-//                break;
-//            }
-//
-//            default: {
-//                System.out.println("Некорректное поле фильтрации");
-//            }
-//        }
-//        return null;
-//    }
-//
+            //Фильтрация по частичному совпадению
+            case (Property.TITLE): {
+               return rssElements = rssElements.stream()
+                        .filter(element -> element.getTitle().contains(request))
+                        .collect(Collectors.toList());
+
+            }
+            case (Property.LINK): {
+               return rssElements = rssElements.stream()
+                        .filter(element -> element.getUrl().contains(request))
+                        .collect(Collectors.toList());
+            }
+            default: {
+                System.out.println("Некорректное поле фильтрации");
+            }
+        }
+        return rssElements;
+    }
 //    //Филтрация по DataTime
 //    public void filterByDateAndTime(String request, String dataFormat) {
 //        rssElements = rssElements.stream()

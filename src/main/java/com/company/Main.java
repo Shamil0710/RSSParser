@@ -36,8 +36,9 @@ public class Main {
         RSSComponent rssComponentJsoup = new RSSComponent("https://www.retail.ru/rss/news/", "E, dd MMM yyyy HH:mm:ss Z");
         RSSComponent rssComponentXML = new RSSComponent("H:\\Parsing result.html", "E, dd MMM yyyy HH:mm:ss Z");
         rssElements = RSSCollectorJsoup.collectRSSElements(rssComponentJsoup, rssElements);
-        rssElements = RSSCollectorXML.collectRSSElements(rssComponentXML, rssElements);
+//        rssElements = RSSCollectorXML.collectRSSElements(rssComponentXML, rssElements);
         rssElements = RssRepository.sort(rssElements, "publicationDate");
+        rssElements = RssRepository.filter("Ap", "title", rssElements);
         RSSPrinter.toPrint(Property.NUMBER_OF_LINES, Property.SAVE_DIRECTORY, rssElements);
     }
 }
