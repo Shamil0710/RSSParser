@@ -1,3 +1,4 @@
+/*
 package com.company.parser;
 
 import com.company.Property;
@@ -92,3 +93,4 @@ public class RSSCollectorXML extends AbstractRSSCollector implements IRSSCollect
     }
 
 }
+*/

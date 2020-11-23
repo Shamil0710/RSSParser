@@ -1,3 +1,4 @@
+/*
 package com.company.parser;
 
 
@@ -5,6 +6,7 @@ import com.company.Property;
 import com.company.abstraction.AbstractRSSCollector;
 import com.company.interfaces.IRSSCollector;
 import org.jsoup.nodes.Element;
+
 import java.io.*;
 import java.util.List;
 
@@ -68,3 +70,4 @@ public class RSSCollectorJsoup extends AbstractRSSCollector implements IRSSColle
 
 
 
+*/

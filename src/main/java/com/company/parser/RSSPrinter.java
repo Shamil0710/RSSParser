@@ -25,4 +25,17 @@ public class RSSPrinter {
         }
     }
 
+    public static void printToConsole(int numberOfLines, String saveDirectory, List<RSSElement> rssElements){
+        int count = 0;
+        for (RSSElement element : rssElements) {
+            System.out.println(element.getTitle());
+            System.out.println(element.getUrl());
+            System.out.println(element.getPublicationDate());
+            System.out.println(element.getComponentUrl());
+            System.out.println();
+            count++;
+            if (count == numberOfLines) break;
+        }
+    }
+
 }

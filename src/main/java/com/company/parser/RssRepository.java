@@ -1,22 +1,35 @@
+/*
 package com.company.parser;
 
 import com.company.Property;
 import com.company.abstraction.AbstractRssRepository;
+import com.company.interfaces.IRSSCollector;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class RssRepository extends AbstractRssRepository {
+
+    private final IRSSCollector rssCollector;
+
+    public RssRepository(IRSSCollector rssCollector) {
+        this.rssCollector = rssCollector;
+    }
+
     //TODO Как здесь реализовать конструкцию "try-with-resources"
     public static List<Element> connectAndGet(RSSComponent rssComponent) throws IOException {
         return Jsoup.connect(rssComponent.getuRL()).get().getElementsByTag(Property.ITEM);
     }
 
-    /* Фильтрация и сортировка стримами */
+    */
+/* Фильтрация и сортировка стримами *//*
+
     public static List<RSSElement> sort(List<RSSElement> rssElements, String fieldName) {
         switch (fieldName) {
             case ("publicationDate"): {
@@ -41,12 +54,14 @@ public class RssRepository extends AbstractRssRepository {
         return null;
     }
 
-    /**
+    */
+/**
      * Фильтрация по полям Title и Url
      *
      * @param request   Аргумен по которому происходит фидьтрация
      * @param fieldName Поле в котором должен содержатся аргумент для фильтрации
-     */
+     *//*
+
     public static List<RSSElement> filter(String request, String fieldName, List<RSSElement> rssElements) {
         switch (fieldName) {
             //TODO стоит ли добавить фильтрацию как по полному так и по частичному совпадению или оставить только один?
@@ -58,13 +73,13 @@ public class RssRepository extends AbstractRssRepository {
 //            }
             //Фильтрация по частичному совпадению
             case (Property.TITLE): {
-               return rssElements = rssElements.stream()
+                return rssElements = rssElements.stream()
                         .filter(element -> element.getTitle().contains(request))
                         .collect(Collectors.toList());
 
             }
             case (Property.LINK): {
-               return rssElements = rssElements.stream()
+                return rssElements = rssElements.stream()
                         .filter(element -> element.getUrl().contains(request))
                         .collect(Collectors.toList());
             }
@@ -74,12 +89,12 @@ public class RssRepository extends AbstractRssRepository {
         }
         return rssElements;
     }
-//    //Филтрация по DataTime
-//    public void filterByDateAndTime(String request, String dataFormat) {
-//        rssElements = rssElements.stream()
-//                .filter(rssElements -> rssElements.getPublicationDate().equals(parseDate(request, dataFormat)))
-//                .collect(Collectors.toList());
-//    }
+
+    //Филтрация по DataTime
+    public List<RSSElement> filterByDateAndTime(List<RSSElement> rssElements, LocalDateTime dateTime) {
+        return rssElements.stream().filter(e -> e.getPublicationDate().equals(dateTime)).collect(Collectors.toList());
+    }
+
 //
 //    public void filterByDate(String request, String dataFormat) {
 //        rssElements = rssElements.stream()
@@ -89,3 +104,4 @@ public class RssRepository extends AbstractRssRepository {
 }
 
 
+*/

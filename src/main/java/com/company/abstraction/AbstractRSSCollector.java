@@ -1,35 +1,24 @@
 package com.company.abstraction;
 
-import com.company.Property;
 import com.company.interfaces.IRSSCollector;
-import com.company.parser.RSSElement;
-import com.company.parser.RssRepository;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
+import com.company.parser.RSSComponent;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 
-public class AbstractRSSCollector implements IRSSCollector {
+public abstract class AbstractRSSCollector<E extends AbstractRSSElement, C extends AbstractRSSComponent> implements IRSSCollector<E, C> {
 
-    //TODO СТоит ли вообще имплиментить тут этот интрефейс?
-    @Override
-    public List<RSSElement> collectRSSElements(AbstractRSSComponent component, List<AbstractRSSElement> rssElements) {
-        //TODO Насколько это корректно, какое исключение использовать в подобной ситуации;
-        throw new NullPointerException("Метод не реализован");
-
-    }
-
-    protected static LocalDateTime parseDate(String pubDate, String dataFormat) {
+    protected LocalDateTime parseDate(String pubDate, String dataFormat) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(dataFormat, Locale.ROOT);
-        LocalDateTime localDate = LocalDateTime.parse(pubDate, dateTimeFormatter);
-        return localDate;
+        return LocalDateTime.parse(pubDate, dateTimeFormatter);
     }
+
+    @Override
+    public abstract List<E> collectRSSElements(C component);
+
 //
 //    private List<Element> connectAndGetItems(AbstractRSSComponent rssComponent) throws IOException {
 //
