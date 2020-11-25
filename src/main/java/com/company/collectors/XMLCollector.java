@@ -5,6 +5,7 @@ import com.company.collectors.abstraction.AbstractRSSCollector;
 import com.company.entities.RSSComponent;
 import com.company.entities.RSSElement;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -34,14 +35,14 @@ public class XMLCollector extends AbstractRSSCollector<RSSElement, RSSComponent>
             for (int i = 0; i < itemNodeList.getLength(); i++) {
                 if (itemNodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
                     //Если нода является "ELEMENT_NODE приводим её к типу element"
-                    org.w3c.dom.Element itemElement = (org.w3c.dom.Element) itemNodeList.item(i);
+                    Element itemElement = (org.w3c.dom.Element) itemNodeList.item(i);
                     //Создаём список дочерних нодво
                     NodeList childNodes = itemElement.getChildNodes();
                     RSSElement rssElement = new RSSElement();
                     //Перебираем дочерние ноды
                     for (int j = 0; j < childNodes.getLength(); j++) {
                         if (childNodes.item(j).getNodeType() == Node.ELEMENT_NODE) {
-                            org.w3c.dom.Element childElement = (org.w3c.dom.Element) childNodes.item(j);
+                           Element childElement = (Element) childNodes.item(j);
                             switch (childElement.getNodeName()) {
                                 case PropertySystem.TITLE: {
                                     rssElement.setTitle(childElement.getTextContent());
@@ -64,11 +65,7 @@ public class XMLCollector extends AbstractRSSCollector<RSSElement, RSSComponent>
                     rssElements.add(rssElement);
                 }
             }
-        } catch (ParserConfigurationException exception) {
-            exception.printStackTrace();
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        } catch (SAXException exception) {
+        } catch (ParserConfigurationException | IOException | SAXException exception) {
             exception.printStackTrace();
         }
         return rssElements;

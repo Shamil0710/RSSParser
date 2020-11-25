@@ -1,8 +1,9 @@
 package com.company.dto;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class RssDto {
+public class RssDto implements Serializable {
 
     private String tittle;
     private String url;

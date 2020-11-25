@@ -21,8 +21,8 @@ public class Main {
 
     public static void main(String[] args){
 
-        RSSComponent rssComponentJsoup = new RSSComponent("https://www.retail.ru/rss/news/", "E, dd MMM yyyy HH:mm:ss Z");
-        RSSComponent rssComponentXML = new RSSComponent("H:\\www.retail.ru.xml", "E, dd MMM yyyy HH:mm:ss Z");
+        RSSComponent rssComponentJsoup = new RSSComponent(Property.JSOUP_DIRECTORY, "E, dd MMM yyyy HH:mm:ss Z");
+        RSSComponent rssComponentXML = new RSSComponent(Property.XML_DIRECTORY, "E, dd MMM yyyy HH:mm:ss Z");
         IRSSCollector<RSSElement, RSSComponent> retailCollector = new RetailCollector();
         IRSSCollector<RSSElement, RSSComponent> XMLCollector = new XMLCollector();
         RssRepository<RSSElement> retailRepository = new RetailRepository(rssComponentJsoup, retailCollector);

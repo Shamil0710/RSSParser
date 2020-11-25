@@ -11,5 +11,6 @@ public interface RssWorker {
     List<RssDto> getAll();
     List<RssDto> sort (String fieldName, List<RssDto> rssDtoList);
     List<RssDto> filter (String fieldName, String request, List<RssDto> rssDtoList);
+    List<RssDto> filterOfDate (LocalDateTime dateTime, List<RssDto> rssDtoList);
 
 }
