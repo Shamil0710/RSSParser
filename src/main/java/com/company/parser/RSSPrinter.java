@@ -1,5 +1,8 @@
 package com.company.parser;
 
+import com.company.dto.RssDto;
+import com.company.entities.RSSElement;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,13 +27,12 @@ public class RSSPrinter {
         }
     }
 
-    public static void printToConsole(int numberOfLines, String saveDirectory, List<RSSElement> rssElements){
+    public static void printToConsole(int numberOfLines, List<RssDto> rssElements){
         int count = 0;
-        for (RSSElement element : rssElements) {
-            System.out.println(element.getTitle());
+        for (RssDto element : rssElements) {
+            System.out.println(element.getTittle());
             System.out.println(element.getUrl());
-            System.out.println(element.getPublicationDate());
-            System.out.println(element.getComponentUrl());
+            System.out.println(element.getDateTime().toString());
             System.out.println();
             count++;
             if (count == numberOfLines) break;
