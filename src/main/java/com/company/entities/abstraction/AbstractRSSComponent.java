@@ -1,4 +1,4 @@
-package com.company.abstraction;
+package com.company.entities.abstraction;
 
 public abstract class AbstractRSSComponent {
 

@@ -1,7 +1,7 @@
-package com.company.interfaces;
+package com.company.collectors.interfaces;
 
-import com.company.abstraction.AbstractRSSComponent;
-import com.company.abstraction.AbstractRSSElement;
+import com.company.entities.abstraction.AbstractRSSComponent;
+import com.company.entities.abstraction.AbstractRSSElement;
 
 import java.util.List;
 

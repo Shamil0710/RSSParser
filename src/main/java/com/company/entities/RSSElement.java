@@ -1,14 +1,9 @@
-package com.company.parser;
+package com.company.entities;
 
 
-import com.company.abstraction.AbstractRSSElement;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import com.company.entities.abstraction.AbstractRSSElement;
 import java.time.LocalDateTime;
 
-
-@XmlRootElement(name = "item")
 public class RSSElement extends AbstractRSSElement {
 
     public RSSElement(String title, String url, LocalDateTime publicationDate, String componentUrl) {

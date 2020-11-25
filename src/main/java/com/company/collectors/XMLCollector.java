@@ -1,14 +1,13 @@
 package com.company.collectors;
 
-import com.company.Property;
-import com.company.abstraction.AbstractRSSCollector;
-import com.company.parser.RSSComponent;
-import com.company.parser.RSSElement;
+import com.company.property.PropertySystem;
+import com.company.collectors.abstraction.AbstractRSSCollector;
+import com.company.entities.RSSComponent;
+import com.company.entities.RSSElement;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -30,7 +29,7 @@ public class XMLCollector extends AbstractRSSCollector<RSSElement, RSSComponent>
             //Получаем документ
             Document document = documentBuilder.parse(new BufferedInputStream(Files.newInputStream(Path.of(component.getuRL()))));
             //Получаем лист элементов внутри тегов "item"
-            NodeList itemNodeList = document.getElementsByTagName(Property.ITEM);
+            NodeList itemNodeList = document.getElementsByTagName(PropertySystem.ITEM);
             //Проходимся по всем итемам
             for (int i = 0; i < itemNodeList.getLength(); i++) {
                 if (itemNodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
@@ -44,17 +43,17 @@ public class XMLCollector extends AbstractRSSCollector<RSSElement, RSSComponent>
                         if (childNodes.item(j).getNodeType() == Node.ELEMENT_NODE) {
                             org.w3c.dom.Element childElement = (org.w3c.dom.Element) childNodes.item(j);
                             switch (childElement.getNodeName()) {
-                                case Property.TITLE: {
+                                case PropertySystem.TITLE: {
                                     rssElement.setTitle(childElement.getTextContent());
                                 }
                                 break;
 
-                                case Property.LINK: {
+                                case PropertySystem.LINK: {
                                     rssElement.setUrl(childElement.getTextContent());
                                 }
                                 break;
 
-                                case Property.DATE_TIME: {
+                                case PropertySystem.DATE_TIME: {
                                     rssElement.setPublicationDate(parseDate(childElement.getTextContent(), component.getDataFormat()));
                                 }
                                 break;

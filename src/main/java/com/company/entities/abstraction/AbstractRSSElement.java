@@ -1,4 +1,4 @@
-package com.company.abstraction;
+package com.company.entities.abstraction;
 
 import java.time.LocalDateTime;
 

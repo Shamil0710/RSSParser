@@ -1,6 +1,6 @@
-package com.company.parser;
+package com.company.entities;
 
-import com.company.abstraction.AbstractRSSComponent;
+import com.company.entities.abstraction.AbstractRSSComponent;
 
 public class RSSComponent extends AbstractRSSComponent {
 

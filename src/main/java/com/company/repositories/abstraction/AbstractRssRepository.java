@@ -1,7 +1,9 @@
-package com.company.abstraction;
+package com.company.repositories.abstraction;
 
-import com.company.interfaces.IRSSCollector;
-import com.company.interfaces.RssRepository;
+import com.company.collectors.interfaces.IRSSCollector;
+import com.company.entities.abstraction.AbstractRSSComponent;
+import com.company.entities.abstraction.AbstractRSSElement;
+import com.company.repositories.interfaces.RssRepository;
 
 import java.util.List;
 
@@ -19,14 +21,5 @@ public abstract class AbstractRssRepository<C extends AbstractRSSComponent> impl
     protected List<AbstractRSSElement> connectAndCollect(){
         return this.collector.collectRSSElements(this.component);
     }
-
-
-
-//    List<AbstractRSSElement> rssElements = new ArrayList<>();
-//    public List<AbstractRSSElement> getRssElements() {
-//        return rssElements;
-//    }
-
-    //TODO После слияния веток сюда будут перенесенны методы связанне с фильтрацией, поиском и выводом.
 
 }

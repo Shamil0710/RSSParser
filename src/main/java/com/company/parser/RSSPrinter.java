@@ -7,15 +7,14 @@ import java.util.List;
 
 public class RSSPrinter {
 
-    public static void toPrint (int numberOfLines, String saveDirectory, List<RSSElement> rssElements) {
+    public static void printToHtml (int numberOfLines, String saveDirectory, List<RssDto> rssElements) {
         try (FileWriter f = new FileWriter(saveDirectory, false);
              BufferedWriter bw = new BufferedWriter(f)) {
             int count = 0;
-            for (RSSElement element : rssElements) {
-                bw.write(element.getTitle() + "<br>");
+            for (RssDto element : rssElements) {
+                bw.write(element.getTittle() + "<br>");
                 bw.write("<a href=\"" + element.getUrl() + "\">" + element.getUrl() + "</a>" + "<br>");
-                bw.write(element.getPublicationDate().toString() + "<br>");
-                bw.write("<a href=\"" + element.getComponentUrl() + "\">" + element.getComponentUrl() + "</a>" + "<br>");
+                bw.write(element.getDateTime().toString() + "<br>");
                 bw.write("<p>");
                 count++;
                 if (count == numberOfLines) break;

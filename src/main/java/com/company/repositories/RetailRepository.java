@@ -1,12 +1,10 @@
 package com.company.repositories;
 
-import com.company.Property;
-import com.company.abstraction.AbstractRSSElement;
-import com.company.abstraction.AbstractRssRepository;
-import com.company.collectors.RetailCollector;
-import com.company.interfaces.IRSSCollector;
-import com.company.parser.RSSComponent;
-import com.company.parser.RSSElement;
+import com.company.property.PropertySystem;
+import com.company.repositories.abstraction.AbstractRssRepository;
+import com.company.collectors.interfaces.IRSSCollector;
+import com.company.entities.RSSComponent;
+import com.company.entities.RSSElement;
 
 import java.util.Comparator;
 import java.util.List;
@@ -47,23 +45,21 @@ public class RetailRepository extends AbstractRssRepository {
                         .collect(Collectors.toList());
             }
             default: {
-                System.out.println("Некорректное поле сортировки");
+                throw new IllegalArgumentException("Некорректное поле сортировки");
             }
         }
-        return null;
     }
 
     @Override
     public List<RSSElement> filter(String request, String fieldName) {
         switch (fieldName) {
             //Фильтрация по частичному совпадению
-            case (Property.TITLE): {
+            case (PropertySystem.TITLE): {
                 return rssElements = rssElements.stream()
                         .filter(element -> element.getTitle().contains(request))
                         .collect(Collectors.toList());
-
             }
-            case (Property.LINK): {
+            case (PropertySystem.LINK): {
                 return rssElements = rssElements.stream()
                         .filter(element -> element.getUrl().contains(request))
                         .collect(Collectors.toList());

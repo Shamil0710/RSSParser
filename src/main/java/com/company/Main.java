@@ -1,6 +1,5 @@
 package com.company;
 
-
 import com.company.collectors.RetailCollector;
 import com.company.collectors.XMLCollector;
 import com.company.interfaces.IRSSCollector;
@@ -13,10 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Main {
 
-    public static void main(String[] args) throws IOException, JAXBException { ;
+    public static void main(String[] args){
 
         List<RSSElement> rssElements = new ArrayList<RSSElement>();
         RSSComponent rssComponentJsoup = new RSSComponent("https://www.retail.ru/rss/news/", "E, dd MMM yyyy HH:mm:ss Z");
